@@ -1,0 +1,59 @@
+
+{% load static %}  <!-- ✅ NEW: added for static files -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Image-Content Search</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .thumb { max-width: 240px; max-height: 160px; object-fit: contain; border: 1px solid #ddd; padding: 4px; background:#fff; }
+    .snippet { font-family: monospace; font-size: 0.9rem; white-space: pre-wrap; max-height: 4.5em; overflow: hidden; }
+  </style>
+</head>
+<body class="bg-light">
+<div class="container py-4">
+  <h1 class="mb-3">Search text inside images</h1>
+
+  <!-- ✅ UPDATED: Search form -->
+  <form method="get" action="{% url 'search' %}" class="mb-4">
+    <div class="row g-2">
+      <div class="col-md-9">
+        {{ form.q }}   <!-- already binds to SearchForm -->
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-primary w-100" type="submit">Search</button>
+      </div>
+    </div>
+  </form>
+  <!-- ✅ END Search form -->
+
+  {% if query %}
+    <h5>Results for: <em>{{ query }}</em> — {{ results|length }} found</h5>
+  {% endif %}
+
+  <div class="row gy-3 mt-2">
+    {% for item in results %}
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100">
+          <a href="{{ item.get_url }}" target="_blank">
+            <img src="{{ item.get_url }}" class="card-img-top thumb" alt="{{ item.filename }}">
+          </a>
+          <div class="card-body">
+            <h6 class="card-title">{{ item.filename }}</h6>
+            <p class="snippet">{{ item.extracted_text|truncatechars:300 }}</p>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <div class="col-12">
+        <div class="alert alert-info">No results found yet. Try indexing images first or try another word.</div>
+      </div>
+    {% endfor %}
+  </div>
+
+</div>
+</body>
+</html>
