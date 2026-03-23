@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-cl-o%(nty1bi6w9u3=%ahi^6f1x%2*d3%u4lrqys4rfbvdc=9%
 DEBUG = True
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "10.163.14.111"]
+# ALLOWED_HOSTS = ["127.0.0.1", "localhost", "10.163.14.111"]
 
 
 
@@ -147,3 +147,7 @@ TESSERACT_CMD = "tesseract"
 
 #MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"
+
+
+ALLOWED_HOSTS = ["*"]
+
