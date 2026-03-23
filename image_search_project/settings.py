@@ -133,15 +133,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #MEDIA_ROOT = r"E:\ImageLibrary"   # <<--- IMAGES FOLDER OUTSIDE PROJECT as requested
 
 # ------------------ UPDATED MEDIA FOLDER ------------------
-MEDIA_ROOT = r"E:\Image_Project\MediaLibrary"  # NEW folder for images & PDFs
+# MEDIA_ROOT = r"E:\Image_Project\MediaLibrary"  # NEW folder for images & PDFs
 MEDIA_URL = '/media/'
 
 
 # ------------- Tesseract config (Windows example) -------------
 # If you installed Tesseract to a different path, change it here:
-TESSERACT_CMD = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+# TESSERACT_CMD = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+
+TESSERACT_CMD = "tesseract"
 # -----------------------------------------------------------------------------
 
 
 #MEDIA_URL = '/media/'
-#MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / "media"
